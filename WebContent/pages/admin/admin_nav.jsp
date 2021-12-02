@@ -6,7 +6,7 @@
 				class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
 				<a class="navbar-brand"
 					href="<%=request.getContextPath()%>/homepage.action"><span
-					class="text-info">网络点餐系统</span></a>
+					class="text-info">网络书店系统</span></a>
 				<ul class="navbar-nav mr-auto">
 					<li
 						class="nav-item <%="user_m".equals(request.getParameter("param_fun")) ? "active" : ""%>">
@@ -15,17 +15,17 @@
 					</li>
 					<li
 						class="nav-item <%="food_t_m".equals(request.getParameter("param_fun")) ? "active" : ""%>">
-						<a class="nav-link" href="#">菜品分类管理</a>
+						<a class="nav-link" href="#">书籍分类管理</a>
 					</li>
 					<li
 						class="nav-item <%="food_m".equals(request.getParameter("param_fun")) ? "active" : ""%>">
 						<a class="nav-link"
-						href="<%=request.getContextPath()%>/admin/admin_list_food.action">菜品管理</a>
+						href="<%=request.getContextPath()%>/admin/admin_list_food.action">书籍管理</a>
 					</li>
 					<li
 						class="nav-item <%="dc_s".equals(request.getParameter("param_fun")) ? "active" : ""%>">
 						<a class="nav-link"
-						href="<%=request.getContextPath()%>/admin/admin_show_dc.action">查看用户点餐情况</a>
+						href="<%=request.getContextPath()%>/admin/admin_show_dc.action">查看用户购买情况</a>
 					</li>
 				</ul>
 				<ul class="nav justify-content-end">
