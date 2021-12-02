@@ -25,13 +25,13 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>菜名</th>
+										<th>书名</th>
 										<th>特色</th>
-										<th>主料</th>
+										<th>简介</th>
 										<th>价格</th>
 										<th>分类</th>
 										<th>图片</th>
-										<th>点餐率</th>
+										<th>阅读数量</th>
 										<th>备注</th>
 										<th>选择</th>
 									</tr>
@@ -56,7 +56,7 @@
 									<td>
 									<%
 										if (food.get("comment").equals("0")) {
-											out.println("厨师推荐");
+											out.println("店长推荐");
 										} else if (food.get("comment").equals("-1")) {
 											out.println("&nbsp;");
 										} else {
@@ -75,7 +75,7 @@
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-danger btn-block">将
-								菜 品 从 点 餐 车 删 除</button>
+								书 籍 从 购 物 车 删 除</button>
 						</div>
 					</form>
 				</div>

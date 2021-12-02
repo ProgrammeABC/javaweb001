@@ -17,7 +17,7 @@
 				<nav
 					class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
 					<a class="navbar-brand" href="homepage.action"><span
-						class="text-info">网络点餐系统</span></a>
+						class="text-info">网上书店系统</span></a>
 					<ul class="nav justify-content-end">
 						<li class="nav-item"><a class="nav-link" href="#"
 							data-toggle="modal" data-target="#loginModal">登录</a></li>
@@ -42,7 +42,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-4 col-12">
-				<h4 class="list-group-item active">热点菜品</h4>
+				<h4 class="list-group-item active">热点书籍</h4>
 				<%
 					List<Map<String, String>> hot = (List<Map<String, String>>) request.getAttribute("hot");
 					if (hot != null) {
@@ -88,7 +88,7 @@
 				%>
 			</div>
 			<div class="col-md-4 col-12">
-				<h4 class="list-group-item active">厨师推荐</h4>
+				<h4 class="list-group-item active">店长推荐</h4>
 				<%
 					List<Map<String, String>> recomm = (List<Map<String, String>>) request.getAttribute("recomm");
 					if (hot != null) {

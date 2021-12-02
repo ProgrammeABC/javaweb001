@@ -6,15 +6,15 @@
 				class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
 				<a class="navbar-brand"
 					href="<%=request.getContextPath() %>/homepage.action"><span
-					class="text-info">网络点餐系统</span></a>
+					class="text-info">网上书店系统</span></a>
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item <%="index".equals(request.getParameter("fun"))?"active":"" %>">
 						<a class="nav-link"
-						href="<%=request.getContextPath() %>/user/user_index.action">正在点餐</a>
+						href="<%=request.getContextPath() %>/user/user_index.action">买书中</a>
 					</li>
 					<li class="nav-item <%="show".equals(request.getParameter("fun"))?"active":"" %>">
 						<a class="nav-link"
-						href="<%=request.getContextPath() %>/user/user_show_dc.action">我的点餐</a>
+						href="<%=request.getContextPath() %>/user/user_show_dc.action">我的选择</a>
 					</li>
 				</ul>
 				<ul class="nav justify-content-end">

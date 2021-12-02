@@ -47,13 +47,13 @@
 							<thead>
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">菜名</th>
+									<th scope="col">书名</th>
 									<th scope="col">特色</th>
-									<th scope="col">主料</th>
+									<th scope="col">简介</th>
 									<th scope="col">价格</th>
 									<th scope="col">分类</th>
 									<th scope="col">图片</th>
-									<th scope="col">点餐率</th>
+									<th scope="col">阅读数量</th>
 									<th scope="col">备注</th>
 									<th scope="col">选择</th>
 								</tr>
@@ -78,7 +78,7 @@
 									<td>
 									<%
 										if (food.get("comment").equals("0")) {
-											out.println("厨师推荐");
+											out.println("店长推荐");
 										} else if (food.get("comment").equals("-1")) {
 											out.println("&nbsp;");
 										} else {
@@ -96,7 +96,7 @@
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-success btn-block">
-							将 菜 品 添 加 到 点 餐 车</button>
+							将 书 籍 添 加 到 购 物 车</button>
 					</div>
 				</form>
 			</div>

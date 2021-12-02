@@ -3,7 +3,7 @@
 <html>
 <head>
 <jsp:include page="/pages/head.jsp">
-	<jsp:param value="管理员管理菜品信息" name="title" />
+	<jsp:param value="管理员管理书籍信息" name="title" />
 </jsp:include>
 </head>
 <body>
@@ -17,7 +17,7 @@
 					action="<%=request.getContextPath()%>/admin/admin_list_food.action"
 					method="post">
 					<input type="search" class="form-control mr-sm-2"
-						placeholder="按菜名搜索" name="s_fn"
+						placeholder="按书名搜索" name="s_fn"
 						value="<%=request.getParameter("s_fn") != null ? request.getParameter("s_fn") : ""%>">
 					<select class="form-control mr-sm-2" name="s_type">
 						<option value="">所有分类</option>
@@ -35,7 +35,7 @@
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
 					&nbsp;&nbsp;<a
 						class="btn btn-outline-primary my-2 my-sm-0 form-control"
-						href="admin_add_food.action" role="button">添加菜品</a>
+						href="admin_add_food.action" role="button">添加书籍</a>
 				</form>
 			</div>
 			<%
@@ -48,13 +48,13 @@
 						<thead>
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col">菜名</th>
+								<th scope="col">书名</th>
 								<th scope="col">特色</th>
-								<th scope="col">主料</th>
+								<th scope="col">简介</th>
 								<th scope="col">价格</th>
 								<th scope="col">分类</th>
 								<th scope="col">图片</th>
-								<th scope="col">点餐率</th>
+								<th scope="col">购买数量</th>
 								<th scope="col">备注</th>
 								<th scope="col">操作</th>
 							</tr>
@@ -79,7 +79,7 @@
 								<td>
 									<%
 										if (food.get("comment").equals("0")) {
-													out.println("厨师推荐");
+													out.println("店长推荐");
 												} else if (food.get("comment").equals("-1")) {
 													out.println("&nbsp;");
 												} else {
