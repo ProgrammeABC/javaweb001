@@ -86,3 +86,4 @@ table.table tr th {
 	%>
 </body>
 </html>
+<%@ include file="live2d.jsp"%>

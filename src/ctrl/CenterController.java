@@ -57,6 +57,9 @@ public class CenterController extends HttpServlet {
 			request.setAttribute("special", food.getSpecialFoods());
 			request.setAttribute("recomm", food.getRecommFoods());
 			request.getRequestDispatcher("/pages/homepage.jsp").forward(request, response);
+		} else if (path.equals("register")) {
+			request.getRequestDispatcher("/pages/user/user_register.jsp").forward(request, response);
+
 		} else if (path.equals("show_detail")) {
 			// 菜品详细信息
 			FoodService food = new FoodService();

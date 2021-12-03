@@ -107,3 +107,4 @@
 	</div>
 </body>
 </html>
+<%@ include file="../live2d.jsp"%>

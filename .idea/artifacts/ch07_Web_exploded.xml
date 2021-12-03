@@ -18,7 +18,7 @@
           <element id="file-copy" path="$PROJECT_DIR$/lib/javax.transaction.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/WebContent/WEB-INF/lib/mysql-connector-java-8.0.15.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/../apache-tomcat-8.5.73/lib/servlet-api.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../JavaWeb_Study/apache-tomcat-8.5.73/lib/servlet-api.jar" />
         </element>
       </element>
     </root>

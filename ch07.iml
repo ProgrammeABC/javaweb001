@@ -17,6 +17,7 @@
         <webroots>
           <root url="file://$MODULE_DIR$/WebContent" relative="/" />
         </webroots>
+        <sourceRoots />
       </configuration>
     </facet>
   </component>
@@ -47,10 +48,11 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.5.73" level="application_server_libraries" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../apache-tomcat-8.5.73/lib/servlet-api.jar!/" />
+          <root url="jar://$MODULE_DIR$/../JavaWeb_Study/apache-tomcat-8.5.73/lib/servlet-api.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
