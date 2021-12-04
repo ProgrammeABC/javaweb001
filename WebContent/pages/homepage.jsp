@@ -114,5 +114,6 @@
 	</div>
 	<%@ include file="login.jsp"%>
 	<%@ include file="live2d.jsp"%>
+	<%@ include file="register.jsp"%>
 </body>
 </html>

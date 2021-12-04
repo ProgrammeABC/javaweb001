@@ -17,7 +17,7 @@ public class UserService {
 		return db.getMap(sql, new String[] { username, password });
 //		return db.getMap(sql, new String[] { "张三", "123" });
 	}
-	public Boolean register(String username,String password){
+	public Boolean register(String username,String password,String email,int sex,Double price){
 
 		return true;
 	}
