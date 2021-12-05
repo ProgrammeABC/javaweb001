@@ -57,15 +57,38 @@ public class CenterController extends HttpServlet {
 			request.setAttribute("special", food.getSpecialFoods());
 			request.setAttribute("recomm", food.getRecommFoods());
 			request.getRequestDispatcher("/pages/homepage.jsp").forward(request, response);
-		} else if (path.equals("register")) {
-			request.getRequestDispatcher("/pages/user/user_register.jsp").forward(request, response);
-
 		} else if (path.equals("show_detail")) {
 			// 菜品详细信息
 			FoodService food = new FoodService();
 			String id = request.getParameter("id");
 			request.setAttribute("food", food.getFood(id));
 			request.getRequestDispatcher("/pages/show_detail.jsp").forward(request, response);
+		} else if (path.equals("register")) {
+			String checkingWord = request.getParameter("checkingWord");
+			String word =(String) session.getAttribute("/ch07_Web_exploded/verify/regist.do");
+			//从session中拿到随机产生的验证码
+			//判断验证码输入是否正确
+			if(checkingWord.equals(word)) {
+				System.out.println("正确");
+				String email = request.getParameter("email");
+				String un = request.getParameter("un");
+				String pw = request.getParameter("pw");
+				String tel = request.getParameter("tel");
+				String address = request.getParameter("address");
+				UserService us_reg = new UserService();
+				int ret = us_reg.register(un,pw,email,tel,address);
+				if(ret>0){
+					request.setAttribute("msg", "注册成功！欢迎你，"+un+"!");
+				} else {
+					request.setAttribute("msg", "注册失败！");
+				}
+				request.setAttribute("href", request.getContextPath() + "/homepage.action");
+				request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
+			}else {
+				request.setAttribute("msg", "验证码有误，请重新输入！");
+				request.setAttribute("href", request.getContextPath() + "/homepage.action");
+				request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
+			}
 		} else if (path.equals("login")) {
 			// 用户登录
 			// 读取请求参数un和pw

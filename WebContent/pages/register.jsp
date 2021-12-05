@@ -17,12 +17,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="<%=request.getContextPath() %>/login.action">
+            <form method="post" action="<%=request.getContextPath() %>/register.action">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">电子邮箱</label>
                         <div class="col-sm-9">
-                            <input class="form-control" name="pw2" type="email" required aria-describedby="emailHelp" maxlength="253"/>
+                            <input class="form-control" name="email" type="email" required aria-describedby="emailHelp" maxlength="253"/>
                             <small id="emailHelp" class="form-text text-muted">请输入你的邮箱地址</small>
                         </div>
                     </div>
@@ -50,7 +50,30 @@
                             <div id="out2" class="" role="alert"></div>
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">电话号码</label>
+                        <div class="col-sm-9">
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text" id="addon-wrapping">+86</span>
+                                <input type="text" class="form-control" name="tel" placeholder="number" aria-label="number" aria-describedby="addon-wrapping" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">家庭住址</label>
+                        <div class="col-sm-9">
+                                <input type="text" name="address" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">验证码</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="checkingWord" class="form-control" required>
+                        </div>
+                        <div class="col-sm-5">
+                            <img src="${pageContext.request.contextPath}/verify/regist.do" onclick="myRefersh(this)">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
@@ -96,25 +119,12 @@
                 $("#out2").attr("class","alert alert-danger");
                 $("#out2").text("❌两次输入的密码不一致！");
             }else{
-                status_pw2 = true;
                 $("#pw2Help").text("✅两次输入密码一致");
                 $("#out2").attr("class","");
                 $("#out2").text("");
             }
         }
-        if(pw1==pw2){
-            status_pw1 = true;
-        }else{
-            status_pw1 = false;
-        }
-        if (status_pw1&&status_pw){
-            $("#submit1").attr("disabled", false);
-        }else{
-            $("#submit1").attr("disabled", true);
-        }
     }
-    var status_pw = true;
-    var status_pw1 = true;
     $('#pw1').blur(function() {
         check_pw1(this);
     });
@@ -124,23 +134,14 @@
         var enoughRegex = new RegExp("(?=.{6,}).*", "g");
         if (false == enoughRegex.test($(pw).val())) {
             $('#out1').attr("class","alert alert-danger");
-            status_pw = false;
             $('#out1').html('❌密码不足6位！');
             $('#pw1Help').html('');
         } else if (strongRegex.test($(pw).val())) {
             $('#pw1Help').html('✅密码强度高!');
-            status_pw = true;
         } else if (mediumRegex.test($(pw).val())) {
             $('#pw1Help').html('⚠密码强度一般。');
-            status_pw = true;
         } else {
             $('#pw1Help').html('⚠密码强度低！');
-            status_pw = true;
-        }
-        if (status_pw1&&status_pw){
-            $("#submit1").attr("disabled", false);
-        }else{
-            $("#submit1").attr("disabled", true);
         }
     }
     $("#pw1").focus(function (){
@@ -148,12 +149,21 @@
         $("#out1").text("");
         $("#out1").attr("class","")
     })
-    $("#pw1").onclick(function (){
-        if (status_pw1&&status_pw){
-            $("#submit1").attr("disabled", false);
-        }else{
-            $("#submit1").attr("disabled", true);
+    function myRefersh( e ) {
+        const source = e.src ; // 获得原来的 src 中的内容
+        //console.log( "source : " + source  ) ;
+        var index = source.indexOf( "?" ) ;  // 从 source 中寻找 ? 第一次出现的位置 (如果不存在则返回 -1 )
+        //console.log( "index : " + index  ) ;
+        if( index > -1 ) { // 如果找到了 ?  就进入内部
+            var s = source.substring( 0 , index ) ; // 从 source 中截取 index 之前的内容 ( index 以及 index 之后的内容都被舍弃 )
+            //console.log( "s : " + s  ) ;
+            var date = new Date(); // 创建一个 Date 对象的 一个 实例
+            var time = date.getTime() ; // 从 新创建的 Date 对象的实例中获得该时间对应毫秒值
+            e.src = s + "?time=" + time ; // 将 加了 尾巴 的 地址 重新放入到 src 上
+            //console.log( e.src ) ;
+        } else {
+            var date = new Date();
+            e.src = source + "?time=" + date.getTime();
         }
-    });
-
+    }
 </script>
