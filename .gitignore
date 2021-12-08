@@ -1,1 +1,4 @@
-/out/artifacts/
+/out/
+/meal.sql
+/WebContent/images/
+/src/util/DBUtil.java
