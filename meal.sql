@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 02/12/2021 23:30:25
+ Date: 09/12/2021 21:48:39
 */
 
 SET NAMES utf8mb4;
@@ -100,7 +100,7 @@ INSERT INTO `food` VALUES (26, '海底两万里', '你不知啊？', '你真的�
 INSERT INTO `food` VALUES (27, '追风筝的人', '高圆圆倾情推荐', '畅销三十三个国家的心灵至于制作', 12, 3, 'images/zhushi/7.jpg', 0, -1);
 INSERT INTO `food` VALUES (28, '杀死一条知更鸟', '鸟:mmp', '下单送笔记本', 43, 3, 'images/zhushi/8.jpg', 0, -1);
 INSERT INTO `food` VALUES (29, '追人的风筝', '最恐怖的风筝', '哼，啊啊啊啊啊啊啊啊啊啊！！！！', 33, 3, 'images/zhushi/9.jpg', 0, -1);
-INSERT INTO `food` VALUES (30, '百度人', '1+2+3', '谁会是班里的百度人', 35, 3, 'images/zhushi/10.jpg', 0, 10);
+INSERT INTO `food` VALUES (30, '百度人', '1+2+3', '谁会是班里的百度人', 35, 3, 'images/zhushi/10.jpg', 2, 10);
 INSERT INTO `food` VALUES (31, '原著', '无删减版', '酱‘哎', 36, 4, 'images/yinpin/01.jpg', 1, -1);
 INSERT INTO `food` VALUES (32, '四大名著', '无删减版', '原著神魔细节都有，没删减嗷', 12, 4, 'images/yinpin/02.jpg', 0, -1);
 INSERT INTO `food` VALUES (33, '小网址', '纯洁之书', '不朽经典', 11, 4, 'images/yinpin/03.jpg', 8, -1);
