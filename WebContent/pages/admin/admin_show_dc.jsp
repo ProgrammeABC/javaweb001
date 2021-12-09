@@ -45,6 +45,6 @@
 			<div class="col-md-3 col-0"></div>
 		</div>
 	</div>
-	<!--ending container-->
+	<script src="<%=request.getContextPath() %>/dist/canvas-nest.js"></script>
 </body>
 </html>

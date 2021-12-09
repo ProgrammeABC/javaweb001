@@ -3,7 +3,7 @@
 <html>
 <head>
 <jsp:include page="/pages/head.jsp">
-	<jsp:param value="修改菜品信息" name="title" />
+	<jsp:param value="修改书信息" name="title" />
 </jsp:include>
 </head>
 <body>
@@ -91,5 +91,6 @@
 	<%
 		}
 	%>
+	<script src="<%=request.getContextPath() %>/dist/canvas-nest.js"></script>
 </body>
 </html>

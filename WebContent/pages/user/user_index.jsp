@@ -105,6 +105,7 @@
 			%>
 		</div>
 	</div>
+	<script src="<%=request.getContextPath() %>/dist/canvas-nest.js"></script>
 </body>
 </html>
 <%@ include file="../live2d.jsp"%>

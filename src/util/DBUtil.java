@@ -47,7 +47,7 @@ public class DBUtil {
 		driver = "com.mysql.cj.jdbc.Driver";
 		url = "jdbc:mysql://localhost:3306/meal?serverTimezone=UTC&useSSL=false";
 		username = "root";
-		password = "200066";
+		password = "1003855404";
 	}
 
 	// ��ʼ�������������������򣬻�����ݿ�����Ӷ���

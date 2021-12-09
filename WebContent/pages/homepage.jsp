@@ -115,5 +115,6 @@
 	<%@ include file="login.jsp"%>
 	<%@ include file="live2d.jsp"%>
 	<%@ include file="register.jsp"%>
+	<script src="<%=request.getContextPath() %>/dist/canvas-nest.js"></script>
 </body>
 </html>

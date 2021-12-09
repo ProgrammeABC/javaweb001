@@ -8,5 +8,6 @@
 </head>
 <body>
 	<jsp:include page="/pages/admin/admin_nav.jsp" />
+	<script src="<%=request.getContextPath() %>/dist/canvas-nest.js"></script>
 </body>
 </html>
