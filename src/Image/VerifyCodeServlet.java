@@ -36,7 +36,7 @@ public class VerifyCodeServlet extends HttpServlet {
         System.out.println("验证码内容: " + code);
 
         // 建立 uri 和 相应的 验证码 的关联 ( 存储到当前会话对象的属性中 )
-        session.setAttribute(uri, code);
+        session.setAttribute("VerifyCode", code);
 
         System.out.println(session.getAttribute(uri));
 

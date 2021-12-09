@@ -63,9 +63,19 @@ public class CenterController extends HttpServlet {
 			String id = request.getParameter("id");
 			request.setAttribute("food", food.getFood(id));
 			request.getRequestDispatcher("/pages/show_detail.jsp").forward(request, response);
+		} else if (path.equals("logout")) {
+			session.removeAttribute("loginID");
+			session.removeAttribute("loginName");
+			session.removeAttribute("ident");
+			session.removeAttribute("vip_level");
+			request.setAttribute("msg", "注销登录成功！");
+			request.setAttribute("href", request.getContextPath() + "/homepage.action");
+			request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
+		} else if(path.equals("user_info_change")){
+			request.getRequestDispatcher("/pages/user/user_info_change.jsp").forward(request, response);
 		} else if (path.equals("register")) {
 			String checkingWord = request.getParameter("checkingWord");
-			String word =(String) session.getAttribute("/ch07_Web_exploded/verify/regist.do");
+			String word =(String) session.getAttribute("VerifyCode");
 			//从session中拿到随机产生的验证码
 			//判断验证码输入是否正确
 			if(checkingWord.equals(word)) {
@@ -94,6 +104,8 @@ public class CenterController extends HttpServlet {
 			// 读取请求参数un和pw
 			String un = request.getParameter("un");
 			String pw = request.getParameter("pw");
+			String checkingWord = request.getParameter("checkingWord");
+			String word =(String) session.getAttribute("VerifyCode");
 			// 判断用户名和密码是否正确
 			if (un == null || pw == null || un.equals("") || pw.equals("")) {
 				// 用户未登录
@@ -102,29 +114,42 @@ public class CenterController extends HttpServlet {
 				request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
 			} else {
 				// 调用模型进行身份验证
-				UserService us = new UserService();
-				Map<String, String> r = us.login(un, pw);
-				if (r != null) {
-					// 登录成功
-					String ident = r.get("ident");
-					// 用session保存用户的登录信息
-					session.setAttribute("loginID", r.get("id"));
-					session.setAttribute("loginName", un);
-					session.setAttribute("ident", ident);
-					if (ident.equals("1")) {
-						// 管理员
-						response.sendRedirect(request.getContextPath() + "/admin/admin_index.action");
-					} else {
-						// 普通用户
-						response.sendRedirect(request.getContextPath() + "/user/user_index.action");
+					if(checkingWord.equals(word)){
+						UserService us = new UserService();
+						Map<String, String> r = us.login(un, pw);
+						if (r != null) {
+							// 登录成功
+							String ident = r.get("ident");
+							String vip_level = r.get("vip_level");
+							// 用session保存用户的登录信息
+							session.setAttribute("loginID", r.get("id"));
+							session.setAttribute("loginName", un);
+							session.setAttribute("ident", ident);
+							session.setAttribute("vip_level", vip_level);
+							if (ident.equals("1")) {
+								// 管理员
+								response.sendRedirect(request.getContextPath() + "/admin/admin_index.action");
+								request.setAttribute("msg", "管理员用户 "+un+" 你好！");
+							} else {
+								// 普通用户
+								response.sendRedirect(request.getContextPath() + "/user/user_index.action");
+								if(Integer.valueOf(vip_level)>0){
+									request.setAttribute("msg", "尊敬的level"+vip_level+"会员用户 "+un+" 你好！");
+								}
+								request.setAttribute("msg", "尊敬的用户 "+un+" 你好！");
+							}
+						} else {
+							// 登录失败
+							// 不合法用户
+							request.setAttribute("msg", "用户名或密码错误！");
+							request.setAttribute("href", request.getContextPath() + "/homepage.action");
+							request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
+						}
+					}else {
+							request.setAttribute("msg", "验证码有误，请重新输入！");
+							request.setAttribute("href", request.getContextPath() + "/homepage.action");
+							request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
 					}
-				} else {
-					// 登录失败
-					// 不合法用户
-					request.setAttribute("msg", "用户名或密码错误！");
-					request.setAttribute("href", request.getContextPath() + "/homepage.action");
-					request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
-				}
 			}
 		} else if (path.equals("user_index")) {
 			// 在进行用户其他功能之前，前提是用户已经登录，并且session中已经存储了用户信息。
