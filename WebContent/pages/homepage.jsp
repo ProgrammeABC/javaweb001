@@ -115,5 +115,6 @@
 	<%@ include file="login.jsp"%>
 	<%@ include file="live2d.jsp"%>
 	<%@ include file="register.jsp"%>
+	<%@ include file="aid/aid_main.jsp"%>
 </body>
 </html>

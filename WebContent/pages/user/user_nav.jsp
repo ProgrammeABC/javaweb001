@@ -22,7 +22,9 @@
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
 							<%=session.getAttribute("loginName") %> vip:<%=session.getAttribute("vip_level")%></a>
 						<div class="dropdown-menu dropdown-menu-right">
-							<a class="dropdown-item" href="<%=request.getContextPath() %>/user_info_change.action">修改个人资料</a>
+							<a class="dropdown-item" href="<%=request.getContextPath() %>/user_info_change_go.action">修改个人资料</a>
+							<a class="dropdown-item" href="<%=request.getContextPath() %>/pages/user/change_password.jsp">修改密码</a>
+							<a class="dropdown-item" href="<%=request.getContextPath() %>/user_info_go.action">查看个人资料</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item"
 								href="<%=request.getContextPath() %>/logout.action">退出登录</a>

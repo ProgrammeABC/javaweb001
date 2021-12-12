@@ -35,6 +35,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
+					<a class="btn btn-primary" href="<%=request.getContextPath() %>/pages/user/user_reset_password.jsp">确定</a>
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">关闭</button>
 					<button type="submit" class="btn btn-primary">确定</button>

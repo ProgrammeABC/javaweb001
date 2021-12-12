@@ -26,3 +26,4 @@
 </div>
 </body>
 </html>
+<%@ include file="aid/aid_main.jsp"%>

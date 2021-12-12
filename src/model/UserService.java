@@ -26,5 +26,20 @@ public class UserService {
 		result = db.update(sql,new String[]{username , password , email , tel ,address});
 		return result;
 	}
-
+	public int uic(String email,String tel ,String address,String username){
+		int result = 0;
+		String sql = "UPDATE user SET email =?,telephone=?, address=? WHERE username=?";
+		result = db.update(sql,new String[]{email , tel , address, username});
+		return result;
+	}
+	public int change_password(String username ,String before_pwd,String after_pwd){
+		int result = 0;
+		String sql = "UPDATE user SET password=? WHERE username=? and password=?";
+		result = db.update(sql,new String[]{after_pwd,username,before_pwd});
+		return result;
+	}
+	public Map<String,String> query_info(String username){
+		String sql = "select email from user where username=?";
+		return db.getMap(sql,new String[]{username});
+	}
 }

@@ -71,8 +71,66 @@ public class CenterController extends HttpServlet {
 			request.setAttribute("msg", "注销登录成功！");
 			request.setAttribute("href", request.getContextPath() + "/homepage.action");
 			request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
-		} else if(path.equals("user_info_change")){
+		} else if(path.equals("user_info_change_go")) {
 			request.getRequestDispatcher("/pages/user/user_info_change.jsp").forward(request, response);
+		} else if(path.equals("sendmail")){
+			String checkingWord = request.getParameter("checkingWord");
+			String word =(String) session.getAttribute("VerifyCode");
+//			if(checkingWord.equals(word)){
+				UserService us = new UserService();
+				String un = request.getParameter("un");
+				System.out.println("un:"+un);
+				String code = "";
+				Map<String, String> r = us.query_info(un);
+				if (r != null) {
+					SendMailService sendMailService = new SendMailService();
+					code = sendMailService.SendMail(r.get("email"), un);
+					System.out.println("code"+code);
+					session.setAttribute("safe_code", code);
+					request.setAttribute("msg", "安全码发送成功！");
+					request.setAttribute("href", request.getContextPath() + "/pages/user/user_info_change.jsp");
+					request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
+				} else {
+					request.setAttribute("msg", "安全码发送失败！");
+					request.setAttribute("href", request.getContextPath() + "/pages/user/user_info_change.jsp");
+					request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
+				}
+//			}else{
+//				request.setAttribute("msg", "验证码有误，请重新输入！");
+//				request.setAttribute("href", request.getContextPath() + "/pages/user/user_reset_password.jsp");
+//				request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
+//			}
+		} else if(path.equals("password_change")) {
+			int count=0;
+			String un = session.getAttribute("loginName").toString();
+			String bpwd = request.getParameter("before_pw");
+			String pwd = request.getParameter("pw");
+			UserService r = new UserService();
+			count = r.change_password(un,bpwd,pwd);
+			if (count>0) {
+				request.setAttribute("msg", "密码修改成功！");
+				request.setAttribute("href", request.getContextPath() + "/pages/homepage.action");
+			} else {
+				request.setAttribute("msg", "密码错误！");
+				request.setAttribute("href", request.getContextPath() + "/pages/user/change_password.jsp");
+			}
+			request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
+		} else if(path.equals("user_info_change")){
+				int count = 0;
+				String email = request.getParameter("email");
+				String tel = request.getParameter("tel");
+				String address = request.getParameter("address");
+				String un = session.getAttribute("loginName").toString();
+				UserService r = new UserService();
+				count = r.uic(email,tel,address,un);
+				if (count>0) {
+					request.setAttribute("msg", "数据修改成功！");
+					request.setAttribute("href", request.getContextPath() + "/pages/homepage.action");
+				} else {
+					request.setAttribute("msg", "数据修改失败！");
+					request.setAttribute("href", request.getContextPath() + "/pages/user/user_info_change.jsp");
+				}
+				request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
 		} else if (path.equals("register")) {
 			String checkingWord = request.getParameter("checkingWord");
 			String word =(String) session.getAttribute("VerifyCode");
@@ -128,16 +186,19 @@ public class CenterController extends HttpServlet {
 							session.setAttribute("vip_level", vip_level);
 							if (ident.equals("1")) {
 								// 管理员
-								response.sendRedirect(request.getContextPath() + "/admin/admin_index.action");
 								request.setAttribute("msg", "管理员用户 "+un+" 你好！");
+								request.setAttribute("href", request.getContextPath() + "/admin/admin_index.action");
+
 							} else {
 								// 普通用户
-								response.sendRedirect(request.getContextPath() + "/user/user_index.action");
 								if(Integer.valueOf(vip_level)>0){
 									request.setAttribute("msg", "尊敬的level"+vip_level+"会员用户 "+un+" 你好！");
+								}else {
+									request.setAttribute("msg", "尊敬的用户 " + un + " 你好！");
 								}
-								request.setAttribute("msg", "尊敬的用户 "+un+" 你好！");
+								request.setAttribute("href", request.getContextPath() + "/user/user_index.action");
 							}
+							request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
 						} else {
 							// 登录失败
 							// 不合法用户
